@@ -1,0 +1,153 @@
+
+
+<!-- Write HTML code here -->
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+<title>Trends</title> 
+<meta charset="utf-8"> 
+<meta name="viewport" content="width=device-width, initial-scale=1"> 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"> 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script> 
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script> 
+
+</head> 
+<body style="background-color: black;"> 
+
+
+<h2 class="display-1 text-white">Top 5 Trending Topics: </h2>
+<br><br>
+
+<div class="row">
+  {% for title_s,id in top_5.items %}
+  <div class="col-sm-2">
+    <div class="card text-center text-white bg-dark mb-3">
+      <div class="card-body">
+        <h5 class="card-title">{{ title_s }}</h5>
+        <a href="/?row={{id}}" class="card-link">View</a>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+
+</div>
+
+<br>
+
+<div class="modal-body row" >
+  <div class="col-md-7">
+    <br><br>
+  <h2 class="text-center  text-white"><u>Trending Topics</u></h2><br>			 
+  <table class="table table-dark table-striped table-hover table-responsive scrollbar-colored" style = "max-height: 1250px; overflow: scroll "> 
+    <thead class="thead-dark"> 
+    <tr> 
+      <th class="text-center">Topic Title</th> 
+      <th class="text-center">Popularity Score</th>
+      <th class="text-center">Type</th> 
+      <th class="text-center">Related Topics</th>
+      <th class="text-center">Sentiment Score</th> 
+    </tr> 
+    </thead> 
+
+    <tbody> 
+    <!-- jinja2 Technique -->
+    {% if d %} 
+    {% for i in d %} 
+    <tr> 
+    
+      <td class="text-center"><a class="btn-link" href="/?row={{i.sno}}">{{i.title}}</a></td> 
+      <td class="text-center">{{i.popularity}}%</td> 
+      <td class="text-center">{{i.type}}</td> 
+      
+      <td class="text-center">
+        {% for rt in i.related_topics %}
+          {{ rt }},
+        {% endfor %}
+      </td> 
+      <td class="text-center">{{i.sentiment}}</td> 
+    
+    
+    </tr> 
+    {% endfor %} 
+    {% endif %} 
+    </tbody> 
+  </table> 
+</div> 
+
+
+<div class="col-md-3" >
+<br><br><br>
+
+  <div class="card text-center text-white bg-dark mb-3" style="width: 45rem;">
+    <div class="card-body">
+      <div class="card-header"><h4 class="card-title">Title: {{title}}</h4></div>
+      <br>
+      <h4 class="card-subtitle mb-2 text-muted">Type: {{type}}</h4>
+      <h4 class="card-subtitle mb-2 text-muted">Popularity Score: {{popularity_score}}%</h4>
+      <h4 class="card-subtitle mb-2 text-muted">Sentiment Score: {{sentiment_score}}</h4>
+    </div>
+  </div>
+
+ <br>
+
+
+ <div class="card text-center text-white bg-dark mb-3" style="width: 45rem;">
+  <div class="card-body">
+    <div class="card-header"><h4 class="card-title">Related Topics</h4></div>
+    <ul class="list-group list-group-flush">
+      {% for rt in related %}
+      <li class="list-group-item text-white bg-dark mb-3">{{ rt }}</li>
+      {% endfor %} 
+    </ul>
+  </div>
+</div>
+
+<br>
+
+
+<div class="card text-center text-white bg-dark mb-3" style="width: 45rem; max-height: 400px; overflow: scroll">
+  <div class="card-body">
+    <div class="card-header"><h4 class="card-title">Sample Tweets about Topic</h4></div>
+    <ul class="list-group list-group-flush">
+      {% for twee in tweets_d %}
+      <li class="list-group-item text-white bg-dark mb-3">{{ twee }}</li>
+      {% endfor %} 
+    </ul>
+  </div>
+</div>
+
+<br>
+
+<div class="card text-center text-white bg-dark mb-3" style="width: 45rem; max-height: 400px; overflow: scroll ">
+  <div class="card-body">
+    <div class="card-header"><h4 class="card-title">Sample Posts from Subreddits about Topic</h4></div>
+    <ul class="list-group list-group-flush">
+      {% for red in reddits %}
+      <li class="list-group-item text-white bg-dark mb-3">{{ red }}</li>
+      {% endfor %} 
+    </ul>
+  </div>
+</div>
+
+
+
+</div>
+</div>
+<br>
+<div class="card text-center text-white bg-dark mb-3" style = "max-height: 400px; overflow: scroll">
+  <div class="card-body">
+    <div class="card-header"><h4 class="card-title">Extracted Text Cues </h4></div>
+    <ul class="list-group list-group-flush">
+      {% for tc in text_cues %}
+      <li class="list-group-item text-white bg-dark mb-3">{{ tc }}</li>
+      {% endfor %} 
+    </ul>
+  </div>
+</div>
+
+</body> 
+</html> 
+
+    
+
