@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'dashboard_table',
+    'django_crontab',
 
 ]
 
@@ -120,3 +121,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+CRONJOBS = [
+    ('0 */2 * * *','dashboard_table.src.cron.run_scheduler')
+]

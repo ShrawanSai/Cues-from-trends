@@ -1,0 +1,5 @@
+1. simple table that calls a function and displays table.
+2. click on regions of interest to get side bar up showing distribution
+3. display top tweets easily on clicking topic
+4. Text cues
+5. show popularity graph

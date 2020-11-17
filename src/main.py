@@ -7,7 +7,9 @@ import reddit_scrapper
 import twitter_listener
 import get_sentiment
 import text_cues
+import time
 
+start_time = time.time()
 pytrends = TrendReq(hl='en-US', tz=530, timeout=(10,25), retries=2, backoff_factor=0.1)
 
 
@@ -35,3 +37,6 @@ print('Step 6 up')
 df.to_pickle('final_ans.pkl')
 
 print(df)
+
+
+print(f'--- {time.time() - start_time} seconds ---')
