@@ -10,7 +10,7 @@ import text_cues
 import time
 import os
 
-def main(path_to_save_to):
+def start_main(path_to_save_to):
     #start_time = time.time()
     try:
         pytrends = TrendReq(hl='en-US', tz=530, timeout=(10,25), retries=2, backoff_factor=0.1)

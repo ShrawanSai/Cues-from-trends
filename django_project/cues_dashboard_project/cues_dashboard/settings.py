@@ -117,6 +117,8 @@ USE_L10N = True
 USE_TZ = True
 
 
+
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
@@ -124,5 +126,8 @@ STATIC_URL = '/static/'
 
 
 CRONJOBS = [
-    ('0 */2 * * *','dashboard_table.src.cron.run_scheduler')
+    ('*/1 * * * *','dashboard_table.cron.run_scheduler')
 ]
+
+
+#CRONTAB_COMMAND_SUFFIX = '2>&1' 
