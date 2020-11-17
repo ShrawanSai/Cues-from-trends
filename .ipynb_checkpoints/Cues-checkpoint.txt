@@ -1,0 +1,18 @@
+1. new line with emojis on right without fullstops before emojis., take full
+if more than 5 words, go to 4 -DONE
+
+2. a sentence with a hashtag provided there are non hashtag words in sentence. No punctuation marks like full stops
+limited to 5 words.
+if sentence is more than 5 words, see if left or right side has more hashtag words within distance of 5. take those words -DONE
+
+
+3. if exclamation mark there, take 5 words that lead upto it. - DONE
+
+
+4. if emoji in line but preceeded by fullstop, do ner for line and take 5 words from left/right - DONE
+
+5. emoji in middle of sentence: split by that emoji, do ner/hashtag search on left and ner on right and take words from there to emoji
+
+6. multiple emoji together: do same as 5
+
+7.
