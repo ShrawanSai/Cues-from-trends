@@ -16,7 +16,7 @@
 <body style="background-color: black;"> 
 
 
-<h2 class="display-1 text-white">Top 5 Trending Topics: </h2>
+<h2 class="display-1 text-white">Top 5 Trending Topics in India: </h2>
 <br><br>
 
 <div class="row">
@@ -35,10 +35,11 @@
 
 <br>
 
+
 <div class="modal-body row" >
   <div class="col-md-7">
     <br><br>
-  <h2 class="text-center  text-white"><u>Trending Topics</u></h2><br>			 
+  <h2 class="text-center  text-white"><u>All Trending Topics</u></h2><br>			 
   <table class="table table-dark table-striped table-hover table-responsive scrollbar-colored" style = "max-height: 1250px; overflow: scroll "> 
     <thead class="thead-dark"> 
     <tr> 
@@ -73,6 +74,12 @@
     {% endif %} 
     </tbody> 
   </table> 
+
+  {% if chart2 %}
+    
+        <img src="data:image/png;base64, {{chart2|safe}}">
+    
+  {% endif %}
 </div> 
 
 
@@ -88,6 +95,18 @@
       <h4 class="card-subtitle mb-2 text-muted">Sentiment Score: {{sentiment_score}}</h4>
     </div>
   </div>
+
+
+  <br>
+
+
+ <div class="card text-center text-white bg-dark mb-3" style="width: 45rem;">
+  <div class="card-body">
+    {% if chart %}
+      <img src="data:image/png;base64, {{chart|safe}}">
+    {% endif %}
+  </div>
+</div>
 
  <br>
 
@@ -145,6 +164,7 @@
     </ul>
   </div>
 </div>
+
 
 </body> 
 </html> 

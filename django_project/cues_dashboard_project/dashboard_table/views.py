@@ -1,6 +1,8 @@
 from django.shortcuts import render
+import pandas as pd
 from django.http import HttpResponse
 import dashboard_table.src.retrieve_table
+from .utils import get_plot,get_indian_state_graph
 
 
 
@@ -22,13 +24,24 @@ def home(request):
 
     top_5 = dict(zip(top_5, top_5_ids))
 
+
+
     
-    
+    rois = list(display_row['roi'])[0]
+    rois = [list(i) for i in rois]
+    rois = rois[:5]
+
+
+    vals = list(display_row['values'])[0]
     title = list(display_row['title'])[0]
     type = list(display_row['type'])[0]
     popularity_score = list(display_row['popularity'])[0]
     popularity_score = str(popularity_score)[:5]
     related = list(display_row['related_topics'])[0]
+
+
+    chart = get_plot(vals,title)
+    chart2 = get_indian_state_graph(rois,title)
 
     ########################################################
     tweets_d = list(display_row['tweets'])[0]
@@ -74,6 +87,9 @@ def home(request):
     context['text_cues'] = text_cues
 
     context['top_5'] = top_5
+
+    context['chart'] = chart
+    context['chart2'] = chart2
 
 
     return render(request,'dashboard_table/home.html',context)

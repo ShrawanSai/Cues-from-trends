@@ -9,7 +9,7 @@ def retrieve():
     file_name = os.path.join(os.getcwd(),'dashboard_table','src','final_ans.pkl')
     df = pd.read_pickle(file_name)
     df.insert(0, 'sno', df.index)
-    df.columns = ['sno','title','popularity','type','related_topics','roi','tweets','reddits','sentiment','text_cues']
+    df.columns = ['sno','title','popularity','values','type','related_topics','roi','tweets','reddits','sentiment','text_cues']
 
     #df['related_topics'] = df['related_topics'].apply(lambda x: list(x))
 

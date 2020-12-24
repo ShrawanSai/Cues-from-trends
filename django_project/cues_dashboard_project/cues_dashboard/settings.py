@@ -126,7 +126,7 @@ STATIC_URL = '/static/'
 
 
 CRONJOBS = [
-    ('*/1 * * * *','dashboard_table.cron.run_scheduler')
+    ('*/55 * * * *','dashboard_table.cron.run_scheduler','>> /tmp/scheduled_job.log')
 ]
 
 

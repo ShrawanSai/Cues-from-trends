@@ -29,13 +29,15 @@ def pedict_next(x,param,y,n):
     ypred = [func(i,param[0],param[1],param[2],param[3]) for i in xpred]
 
     
-    plt.plot(x,y,'b',label = 'Current Trend')
-    plt.plot(x,y_p,'r', label = 'Fitted Curve')
-    plt.plot(xpred,ypred,'r--', label = 'Prediction for next 10 days')
-    plt.legend()
+    values = {"ct":[x,y],"ft":[x,y_p],"pred":[xpred,ypred]}
+    #plt.plot(x,y,'b',label = 'Current Trend')
+    #plt.plot(x,y_p,'r', label = 'Fitted Curve')
+    #plt.plot(xpred,ypred,'r--', label = 'Prediction for next 10 days')
+    #plt.legend()
+    return values
 
 
-def trend_status(topic,pytrends, plot = False):
+def trend_status(topic,pytrends, plot = True):
     kw_list = [topic]
     #print('passed 1' )
     pytrends.build_payload(kw_list, cat=0, timeframe='today 5-y', geo='IN', gprop='')
@@ -55,9 +57,9 @@ def trend_status(topic,pytrends, plot = False):
     slope = get_slope(x,param)
     
     if plot:
-        pedict_next(x,param,y,n)
+        values = pedict_next(x,param,y,n)
     
-    return slope
+    return slope,values
 
 
 def get_iot(hashtags,topics,pytrends):
@@ -73,6 +75,7 @@ def get_iot(hashtags,topics,pytrends):
     #print(all_topics)
 
     popularity = {}
+    vals = {}
 
     for title in all_topics:
         
@@ -84,8 +87,9 @@ def get_iot(hashtags,topics,pytrends):
                 continue
             title = ' '.join(title)
         try:
-            slope = trend_status(title,pytrends)
+            slope,values = trend_status(title,pytrends)
             popularity[temp] = slope
+            vals[temp] = values
         except Exception as e:
             #print(e)
             pass
@@ -111,6 +115,8 @@ def get_iot(hashtags,topics,pytrends):
 
     popularity_db.at[0, 'popularity'] = popularity_db.at[0, 'popularity'] - 1
     popularity_db.at[db_len-1, 'popularity'] = popularity_db.at[db_len-1, 'popularity'] + 1
+
+    popularity_db['values'] = popularity_db['title'].map(vals)
 
     return popularity_db
 
