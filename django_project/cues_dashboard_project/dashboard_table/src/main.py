@@ -1,15 +1,17 @@
 import pandas as pd 
 from pytrends.request import TrendReq
-from get_trending_topics import get_trend_names
-from interest_over_time import get_iot
-from trend_details import get_details_of_topic
-from reddit_scrapper import scrape_reddit
-from twitter_listener import listener_for_tweets
-from get_sentiment import get_sentiment
-from text_cues import get_all_text_cues
+from dashboard_table.src.get_trending_topics import get_trend_names
+from dashboard_table.src.interest_over_time import get_iot
+from dashboard_table.src.trend_details import get_details_of_topic
+from dashboard_table.src.reddit_scrapper import scrape_reddit
+from dashboard_table.src.twitter_listener import listener_for_tweets
+from dashboard_table.src.get_sentiment import get_sentiment
+from dashboard_table.src.text_cues import get_all_text_cues
 import time
 import os
-cgvhbjnkm l,
+
+
+
 def start_main(path_to_save_to):
     #start_time = time.time()
     print('gg')
